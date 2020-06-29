@@ -44,7 +44,7 @@
 		372313951DCF84E30042DA87 /* ytcpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ytcpsocket.c; path = Sources/ytcpsocket.c; sourceTree = SOURCE_ROOT; };
 		372313981DCF84EC0042DA87 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Sources/Result.swift; sourceTree = SOURCE_ROOT; };
 		372313991DCF84EC0042DA87 /* Socket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Socket.swift; path = Sources/Socket.swift; sourceTree = SOURCE_ROOT; };
-		37454ECA1E06158200800AE5 /* Edge Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Edge Client.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		37454ECA1E06158200800AE5 /* SwiftSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37454EE81E0617F300800AE5 /* Info-tvOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Info-tvOS.plist"; path = "Sources/Info-tvOS.plist"; sourceTree = SOURCE_ROOT; };
 		375C482D1DDC4C56008C701D /* iOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		375C482F1DDC4C56008C701D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,8 +53,8 @@
 		375C48361DDC4C56008C701D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		375C48391DDC4C56008C701D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		375C483B1DDC4C56008C701D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		377DAA691DCDE40200009697 /* Edge Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Edge Client.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		377DAA761DCDE45D00009697 /* Edge Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Edge Client.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		377DAA691DCDE40200009697 /* SwiftSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		377DAA761DCDE45D00009697 /* SwiftSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,10 +143,10 @@
 		5518C83019A329100049DC22 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				377DAA691DCDE40200009697 /* Edge Client.framework */,
-				377DAA761DCDE45D00009697 /* Edge Client.framework */,
+				377DAA691DCDE40200009697 /* SwiftSocket.framework */,
+				377DAA761DCDE45D00009697 /* SwiftSocket.framework */,
 				375C482D1DDC4C56008C701D /* iOS Example.app */,
-				37454ECA1E06158200800AE5 /* Edge Client.framework */,
+				37454ECA1E06158200800AE5 /* SwiftSocket.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -194,9 +194,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		37454EC91E06158200800AE5 /* Edge Client tvOS */ = {
+		37454EC91E06158200800AE5 /* SwiftSocket tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 37454ED31E06158200800AE5 /* Build configuration list for PBXNativeTarget "Edge Client tvOS" */;
+			buildConfigurationList = 37454ED31E06158200800AE5 /* Build configuration list for PBXNativeTarget "SwiftSocket tvOS" */;
 			buildPhases = (
 				37454EC51E06158200800AE5 /* Sources */,
 				37454EC61E06158200800AE5 /* Frameworks */,
@@ -207,9 +207,9 @@
 			);
 			dependencies = (
 			);
-			name = "Edge Client tvOS";
+			name = "SwiftSocket tvOS";
 			productName = "SwiftSocket tvOS";
-			productReference = 37454ECA1E06158200800AE5 /* Edge Client.framework */;
+			productReference = 37454ECA1E06158200800AE5 /* SwiftSocket.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		375C482C1DDC4C56008C701D /* iOS Example */ = {
@@ -229,9 +229,9 @@
 			productReference = 375C482D1DDC4C56008C701D /* iOS Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		377DAA681DCDE40200009697 /* Edge Client iOS */ = {
+		377DAA681DCDE40200009697 /* SwiftSocket iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 377DAA6E1DCDE40200009697 /* Build configuration list for PBXNativeTarget "Edge Client iOS" */;
+			buildConfigurationList = 377DAA6E1DCDE40200009697 /* Build configuration list for PBXNativeTarget "SwiftSocket iOS" */;
 			buildPhases = (
 				377DAA641DCDE40200009697 /* Sources */,
 				377DAA651DCDE40200009697 /* Frameworks */,
@@ -242,14 +242,14 @@
 			);
 			dependencies = (
 			);
-			name = "Edge Client iOS";
+			name = "SwiftSocket iOS";
 			productName = "SwiftSocket iOS";
-			productReference = 377DAA691DCDE40200009697 /* Edge Client.framework */;
+			productReference = 377DAA691DCDE40200009697 /* SwiftSocket.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		377DAA751DCDE45D00009697 /* Edge Client macOS */ = {
+		377DAA751DCDE45D00009697 /* SwiftSocket macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 377DAA7B1DCDE45D00009697 /* Build configuration list for PBXNativeTarget "Edge Client macOS" */;
+			buildConfigurationList = 377DAA7B1DCDE45D00009697 /* Build configuration list for PBXNativeTarget "SwiftSocket macOS" */;
 			buildPhases = (
 				377DAA711DCDE45D00009697 /* Sources */,
 				377DAA721DCDE45D00009697 /* Frameworks */,
@@ -260,9 +260,9 @@
 			);
 			dependencies = (
 			);
-			name = "Edge Client macOS";
+			name = "SwiftSocket macOS";
 			productName = "SwiftSocket macOS";
-			productReference = 377DAA761DCDE45D00009697 /* Edge Client.framework */;
+			productReference = 377DAA761DCDE45D00009697 /* SwiftSocket.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -297,7 +297,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5518C82A19A3290F0049DC22 /* Build configuration list for PBXProject "Edge Client" */;
+			buildConfigurationList = 5518C82A19A3290F0049DC22 /* Build configuration list for PBXProject "SwiftSocket" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -310,9 +310,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				377DAA681DCDE40200009697 /* Edge Client iOS */,
-				377DAA751DCDE45D00009697 /* Edge Client macOS */,
-				37454EC91E06158200800AE5 /* Edge Client tvOS */,
+				377DAA681DCDE40200009697 /* SwiftSocket iOS */,
+				377DAA751DCDE45D00009697 /* SwiftSocket macOS */,
+				37454EC91E06158200800AE5 /* SwiftSocket tvOS */,
 				375C482C1DDC4C56008C701D /* iOS Example */,
 			);
 		};
@@ -443,7 +443,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiftsocket.SwiftSocket;
-				PRODUCT_NAME = "Edge Client";
+				PRODUCT_NAME = SwiftSocket;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -475,7 +475,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiftsocket.SwiftSocket;
-				PRODUCT_NAME = "Edge Client";
+				PRODUCT_NAME = SwiftSocket;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -556,7 +556,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiftsocket.SwiftSocket;
-				PRODUCT_NAME = "Edge Client";
+				PRODUCT_NAME = SwiftSocket;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -591,7 +591,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiftsocket.SwiftSocket;
-				PRODUCT_NAME = "Edge Client";
+				PRODUCT_NAME = SwiftSocket;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -620,7 +620,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiftsocket.SwiftSocket;
-				PRODUCT_NAME = "Edge Client";
+				PRODUCT_NAME = SwiftSocket;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -646,7 +646,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiftsocket.SwiftSocket;
-				PRODUCT_NAME = "Edge Client";
+				PRODUCT_NAME = SwiftSocket;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -765,7 +765,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		37454ED31E06158200800AE5 /* Build configuration list for PBXNativeTarget "Edge Client tvOS" */ = {
+		37454ED31E06158200800AE5 /* Build configuration list for PBXNativeTarget "SwiftSocket tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37454ED41E06158200800AE5 /* Debug */,
@@ -783,7 +783,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		377DAA6E1DCDE40200009697 /* Build configuration list for PBXNativeTarget "Edge Client iOS" */ = {
+		377DAA6E1DCDE40200009697 /* Build configuration list for PBXNativeTarget "SwiftSocket iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				377DAA6F1DCDE40200009697 /* Debug */,
@@ -792,7 +792,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		377DAA7B1DCDE45D00009697 /* Build configuration list for PBXNativeTarget "Edge Client macOS" */ = {
+		377DAA7B1DCDE45D00009697 /* Build configuration list for PBXNativeTarget "SwiftSocket macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				377DAA7C1DCDE45D00009697 /* Debug */,
@@ -801,7 +801,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5518C82A19A3290F0049DC22 /* Build configuration list for PBXProject "Edge Client" */ = {
+		5518C82A19A3290F0049DC22 /* Build configuration list for PBXProject "SwiftSocket" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5518C83419A329100049DC22 /* Debug */,

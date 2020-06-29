@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "37454EC91E06158200800AE5"
-               BuildableName = "Edge Client.framework"
-               BlueprintName = "Edge Client tvOS"
-               ReferencedContainer = "container:Edge Client.xcodeproj">
+               BlueprintIdentifier = "377DAA751DCDE45D00009697"
+               BuildableName = "SwiftSocket.framework"
+               BlueprintName = "SwiftSocket macOS"
+               ReferencedContainer = "container:SwiftSocket.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,6 +29,8 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -43,12 +45,14 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "37454EC91E06158200800AE5"
-            BuildableName = "Edge Client.framework"
-            BlueprintName = "Edge Client tvOS"
-            ReferencedContainer = "container:Edge Client.xcodeproj">
+            BlueprintIdentifier = "377DAA751DCDE45D00009697"
+            BuildableName = "SwiftSocket.framework"
+            BlueprintName = "SwiftSocket macOS"
+            ReferencedContainer = "container:SwiftSocket.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -59,10 +63,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "37454EC91E06158200800AE5"
-            BuildableName = "Edge Client.framework"
-            BlueprintName = "Edge Client tvOS"
-            ReferencedContainer = "container:Edge Client.xcodeproj">
+            BlueprintIdentifier = "377DAA751DCDE45D00009697"
+            BuildableName = "SwiftSocket.framework"
+            BlueprintName = "SwiftSocket macOS"
+            ReferencedContainer = "container:SwiftSocket.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

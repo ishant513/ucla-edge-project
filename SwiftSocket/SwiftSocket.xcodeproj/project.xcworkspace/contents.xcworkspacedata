@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/ishan/Documents/code/ucla-edge-project/SwiftSocket/Edge Client.xcodeproj">
+      location = "self:SwiftSocket.xcodeproj">
    </FileRef>
 </Workspace>

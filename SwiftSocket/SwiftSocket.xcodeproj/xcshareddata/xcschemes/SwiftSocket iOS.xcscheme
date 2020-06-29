@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "377DAA681DCDE40200009697"
-               BuildableName = "Edge Client.framework"
-               BlueprintName = "Edge Client iOS"
-               ReferencedContainer = "container:Edge Client.xcodeproj">
+               BuildableName = "SwiftSocket.framework"
+               BlueprintName = "SwiftSocket iOS"
+               ReferencedContainer = "container:SwiftSocket.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,6 +29,8 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -44,11 +46,13 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "377DAA681DCDE40200009697"
-            BuildableName = "Edge Client.framework"
-            BlueprintName = "Edge Client iOS"
-            ReferencedContainer = "container:Edge Client.xcodeproj">
+            BuildableName = "SwiftSocket.framework"
+            BlueprintName = "SwiftSocket iOS"
+            ReferencedContainer = "container:SwiftSocket.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -60,9 +64,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "377DAA681DCDE40200009697"
-            BuildableName = "Edge Client.framework"
-            BlueprintName = "Edge Client iOS"
-            ReferencedContainer = "container:Edge Client.xcodeproj">
+            BuildableName = "SwiftSocket.framework"
+            BlueprintName = "SwiftSocket iOS"
+            ReferencedContainer = "container:SwiftSocket.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
