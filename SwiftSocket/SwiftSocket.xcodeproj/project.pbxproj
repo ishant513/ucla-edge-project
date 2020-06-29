@@ -33,6 +33,7 @@
 		375C48351DDC4C56008C701D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 375C48331DDC4C56008C701D /* Main.storyboard */; };
 		375C48371DDC4C56008C701D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 375C48361DDC4C56008C701D /* Assets.xcassets */; };
 		375C483A1DDC4C56008C701D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 375C48381DDC4C56008C701D /* LaunchScreen.storyboard */; };
+		86B3AD7824AA8DF500EB3254 /* SwiftSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377DAA761DCDE45D00009697 /* SwiftSocket.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86B3AD7824AA8DF500EB3254 /* SwiftSocket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

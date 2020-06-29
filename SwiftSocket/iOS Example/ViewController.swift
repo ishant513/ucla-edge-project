@@ -7,32 +7,54 @@ class ViewController: UIViewController {
   
   let host = "localhost"
   let port = 9000
-  var client: TCPClient?
+    var client: TCPClient?
 
   override func viewDidLoad() {
     super.viewDidLoad()
     
     client = TCPClient(address: host, port: Int32(port))
   }
-  
-  @IBAction func sendButtonAction() {
-    guard let client = client else { return }
+
+    var uinput: String = "text box didn't connect"
     
-    switch client.connect(timeout: 10) {
-    case .success:
-      appendToTextField(string: "Connected to host \(client.address)")
-      if let response = sendRequest(string: "GET / HTTP/1.0\n\n", using: client) {
+    //our label to display input
+    @IBOutlet weak var labelName: UILabel!
+    
+    //this is the text field we created
+    @IBOutlet weak var textFieldName: UITextField!
+    
+    @IBAction func buttonClick(sender: UIButton) {
+        //getting input from Text Field
+        uinput = textFieldName.text!
+        
+        //Displaying input text into label
+        labelName.text = uinput
+        uinput.append("\n")
+    }
+    
+    @IBAction func connectButtonAction(){
+        guard let client = client else { return }
+        switch client.connect(timeout: 10) {
+        case .success:
+        appendToTextField(string: "Connected to host \(client.address)")
+        case .failure(let error):
+            appendToTextField(string: String(describing: error))
+        }
+    }
+    
+    @IBAction func sendButtonAction() {
+    guard let client = client else { return }
+      if let response = sendRequest(string: uinput, using: client) {
         appendToTextField(string: "Response: \(response)")
       }
-    case .failure(let error):
-      appendToTextField(string: String(describing: error))
-    }
   }
   
+  
+    
   private func sendRequest(string: String, using client: TCPClient) -> String? {
     appendToTextField(string: "Sending data ... ")
-    
-    switch client.send(string: string) {
+    appendToTextField(string: uinput)
+    switch client.send(string: uinput) {
     case .success:
       return readResponse(from: client)
     case .failure(let error):
@@ -51,5 +73,4 @@ class ViewController: UIViewController {
     print(string)
     textView.text = textView.text.appending("\n\(string)")
   }
-
 }
