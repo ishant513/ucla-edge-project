@@ -1,2 +1,1 @@
-# ucla-edge-project
-IOS/Swift based App and Java Server to characterize Edge
+This is a basic Client-Server Socket code. The server is in java and the client is in swift. To run, execute the java code through terminal and the swift code through xcodes. Make sure the ports are the same, and that your ip is localhost if you are doing it on one computer. Run the server first, then the client. Click send data to establish a connection. 
