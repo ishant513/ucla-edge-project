@@ -5,8 +5,8 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var textView: UITextView!
   
-  let host = "apple.com"
-  let port = 80
+  let host = "localhost"
+  let port = 9000
   var client: TCPClient?
 
   override func viewDidLoad() {
