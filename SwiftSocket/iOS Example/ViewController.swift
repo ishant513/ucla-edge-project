@@ -45,6 +45,7 @@ class ViewController: UIViewController {
     @IBAction func sendButtonAction() {
     guard let client = client else { return }
       if let response = sendRequest(string: uinput, using: client) {
+        appendToTextField(string: "Got it\n")
         appendToTextField(string: "Response: \(response)")
       }
   }
@@ -68,7 +69,7 @@ class ViewController: UIViewController {
     
     return String(bytes: response, encoding: .utf8)
   }
-  
+
   private func appendToTextField(string: String) {
     print(string)
     textView.text = textView.text.appending("\n\(string)")
