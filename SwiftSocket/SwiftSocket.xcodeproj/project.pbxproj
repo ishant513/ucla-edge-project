@@ -33,6 +33,7 @@
 		375C48351DDC4C56008C701D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 375C48331DDC4C56008C701D /* Main.storyboard */; };
 		375C48371DDC4C56008C701D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 375C48361DDC4C56008C701D /* Assets.xcassets */; };
 		375C483A1DDC4C56008C701D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 375C48381DDC4C56008C701D /* LaunchScreen.storyboard */; };
+		866C912924B3CA9100DACFA5 /* latencymeasure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866C912824B3CA9100DACFA5 /* latencymeasure.swift */; };
 		86B3AD7824AA8DF500EB3254 /* SwiftSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377DAA761DCDE45D00009697 /* SwiftSocket.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		375C483B1DDC4C56008C701D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		377DAA691DCDE40200009697 /* SwiftSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		377DAA761DCDE45D00009697 /* SwiftSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		866C912824B3CA9100DACFA5 /* latencymeasure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = latencymeasure.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				375C482F1DDC4C56008C701D /* AppDelegate.swift */,
+				866C912824B3CA9100DACFA5 /* latencymeasure.swift */,
 				375C48311DDC4C56008C701D /* ViewController.swift */,
 				375C48331DDC4C56008C701D /* Main.storyboard */,
 				375C48361DDC4C56008C701D /* Assets.xcassets */,
@@ -374,6 +377,7 @@
 			files = (
 				375C48321DDC4C56008C701D /* ViewController.swift in Sources */,
 				375C48301DDC4C56008C701D /* AppDelegate.swift in Sources */,
+				866C912924B3CA9100DACFA5 /* latencymeasure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

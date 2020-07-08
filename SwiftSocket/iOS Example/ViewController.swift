@@ -14,9 +14,9 @@ class ViewController: UIViewController {
     
     client = TCPClient(address: host, port: Int32(port))
   }
-
-    var uinput: String = "text box didn't connect"
     
+    lazy var string2: String = "Hi"
+ 
     //our label to display input
     @IBOutlet weak var labelName: UILabel!
     
@@ -25,11 +25,10 @@ class ViewController: UIViewController {
     
     @IBAction func buttonClick(sender: UIButton) {
         //getting input from Text Field
-        uinput = textFieldName.text!
+        string2 = textFieldName.text!
         
         //Displaying input text into label
-        labelName.text = uinput
-        uinput.append("\n")
+        labelName.text = string2
     }
     
     @IBAction func connectButtonAction(){
@@ -42,20 +41,34 @@ class ViewController: UIViewController {
         }
     }
     
+    var string3: String = ""
+    
     @IBAction func sendButtonAction() {
     guard let client = client else { return }
-      if let response = sendRequest(string: uinput, using: client) {
-        appendToTextField(string: "Got it\n")
-        appendToTextField(string: "Response: \(response)")
-      }
+        string3 = string2 + "\n"
+        var packet:pktheader {
+            get{
+                return pktheader(sequence: myseqno, sendtime: 0, bytes: string3.utf8.count)
+            }
+        }
+        var uinput: String{
+            get{
+                createpktstring(pkt: packet, userstring: string3)
+            }
+        }
+    
+        if let response = sendRequest(string: string3, using: client) {
+            appendToTextField(string: "Got it\n")
+            appendToTextField(string: "Response: \(response)")
+        }
   }
   
   
     
-  private func sendRequest(string: String, using client: TCPClient) -> String? {
+    private func sendRequest(string: String, using client: TCPClient) -> String? {
     appendToTextField(string: "Sending data ... ")
-    appendToTextField(string: uinput)
-    switch client.send(string: uinput) {
+    appendToTextField(string: string3)
+    switch client.send(string: string3) {
     case .success:
       return readResponse(from: client)
     case .failure(let error):

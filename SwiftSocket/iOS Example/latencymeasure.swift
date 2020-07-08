@@ -1,9 +1,16 @@
 import Foundation
 
+var myseqno: Int64 = 1
+
 struct pktheader {
     var seqno: Int64 = 0
-    var timesent: Int64 = 0
-    var userbytes: Int64 = 0
+    var timesent: Int = 0
+    var userbytes: Int = 0
+    init(sequence: Int64, sendtime: Int, bytes: Int) {
+        seqno = sequence
+        timesent = sendtime
+        userbytes = bytes
+    }
 }
 
 func createpktstring(pkt: pktheader, userstring: String) -> String {
@@ -13,3 +20,8 @@ func createpktstring(pkt: pktheader, userstring: String) -> String {
     let stringtosend = string + userstring
     return stringtosend
 }
+
+var string2: String = "Hi"
+var packet = pktheader(sequence: myseqno, sendtime: 0, bytes: string2.utf8.count)
+let str = createpktstring(pkt: packet, userstring: string2)
+
