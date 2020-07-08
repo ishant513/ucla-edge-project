@@ -3,17 +3,17 @@ import SwiftSocket
 
 class ViewController: UIViewController {
   
-  @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var textView: UITextView!
   
-  let host = "localhost"
-  let port = 9000
+    let host = "localhost"
+    let port = 9000
     var client: TCPClient?
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
     
-    client = TCPClient(address: host, port: Int32(port))
-  }
+        client = TCPClient(address: host, port: Int32(port))
+    }
     
     lazy var string2: String = "Hi"
  
@@ -41,14 +41,13 @@ class ViewController: UIViewController {
         }
     }
     
-    var string3: String = ""
-    
+
     @IBAction func sendButtonAction() {
     guard let client = client else { return }
-        string3 = string2 + "\n"
+        var string3: String = string2 + "\n"
         var packet:pktheader {
             get{
-                return pktheader(sequence: myseqno, sendtime: 0, bytes: string3.utf8.count)
+                return pktheader(bytes: string3.utf16.count)
             }
         }
         var uinput: String{
@@ -56,19 +55,22 @@ class ViewController: UIViewController {
                 createpktstring(pkt: packet, userstring: string3)
             }
         }
-    
-        if let response = sendRequest(string: string3, using: client) {
+        if let response = sendRequest(stringtossend: uinput, using: client) {
             appendToTextField(string: "Got it\n")
             appendToTextField(string: "Response: \(response)")
+        }
+        if let response1 = sendRequest(stringtossend: "\n", using: client) {
+            appendToTextField(string: "Got it again\n")
+            appendToTextField(string: "Response: \(response1)")
         }
   }
   
   
     
-    private func sendRequest(string: String, using client: TCPClient) -> String? {
+    private func sendRequest(stringtossend: String, using client: TCPClient) -> String? {
     appendToTextField(string: "Sending data ... ")
-    appendToTextField(string: string3)
-    switch client.send(string: string3) {
+    appendToTextField(string: stringtossend)
+    switch client.send(string: stringtossend) {
     case .success:
       return readResponse(from: client)
     case .failure(let error):
