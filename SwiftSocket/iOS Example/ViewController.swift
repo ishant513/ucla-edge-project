@@ -8,7 +8,7 @@ class ViewController: UIViewController {
     var host:String = "localhost"
     let port = 9000
     var client: TCPClient?
-    var runtimer: looper?
+    var runtimer: timeloop?
     var runtest: Bool = false
 
     override func viewDidLoad() {
@@ -19,9 +19,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var frequency: UITextField!
     
-    var inputtedtime: TimeInterval = 0.0
+    var inputtedtime: TimeInterval = 500
     
-    @IBAction func getTimeInt(){
+    @IBAction func getTimeInt() {
         inputtedtime = (frequency.text! as NSString).doubleValue
         if (inputtedtime < 100) {
             inputtedtime = 100
@@ -70,7 +70,7 @@ class ViewController: UIViewController {
         }
     }
   
-    private func sendRequest(stringtossend: String, using client: TCPClient) -> String? {
+    func sendRequest(stringtossend: String, using client: TCPClient) -> String? {
         appendToTextField(string: "Sending data ... ")
         appendToTextField(string: stringtossend)
         switch client.send(string: stringtossend) {
@@ -82,7 +82,7 @@ class ViewController: UIViewController {
         }
     }
   
-    private func readResponse(from client: TCPClient) -> String? {
+    func readResponse(from client: TCPClient) -> String? {
         guard let response = client.read(1024*10) else { return nil }
     
         return String(bytes: response, encoding: .utf8)
@@ -96,47 +96,12 @@ class ViewController: UIViewController {
     @IBAction func TestStart(_ sender: Any) {
         appendToTextField(string: "Got it again\n")
         runtest = true
-        runtimer = looper.self()
+        runtimer = timeloop.self(frequency: inputtedtime, string2: string2, client: client!)
+        runtimer?.setController(viewcon: self)
     }
     
     @IBAction func stopButtonClick(sender: UIButton){
         
     }
 
-    class looper {
-        var flag: Int = 0
-        
-        init() {
-            _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
-        }
-        
-        func printer() {
-            print("Got it again\n")
-        }
-        
-        @objc func fire() {
-            print("in loop\n")
-            // appendToTextField(string: "Got it again\n")
-        }
-//            var string3: String = string2 + "\n"
-//            var packet:pktheader {
-//                get{
-//                    return pktheader(bytes: string3.utf16.count)
-//                }
-//            }
-//            var uinput: String{
-//                get{
-//                createpktstring(pkt: packet, userstring: string3)
-//            }
-//            }
-//            if let response = sendRequest(stringtossend: uinput, using: client) {
-//                appendToTextField(string: "Got it\n")
-//                appendToTextField(string: "Response: \(response)")
-//            }
-//            if let response1 = sendRequest(stringtossend: "\n", using: client) {
-//                appendToTextField(string: "Got it again\n")
-//                appendToTextField(string: "Response: \(response1)")
-//            }
-        
-    }
 }
