@@ -12,14 +12,11 @@ public class Server {
 		BufferedReader d = new BufferedReader(new InputStreamReader(din));
 		DataOutputStream dout = new DataOutputStream(sock.getOutputStream());
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String lineread = null;
-		String str = "";
 		boolean sent = true;
 		while(sent){
 			System.out.println("in loop");
-			lineread = d.readLine();
-			System.out.println("client says: " + lineread);
-			str = br.readLine();
+			System.out.println("received");
+			String str = d.readLine();
 			dout.writeUTF(str);
 			dout.flush();
 		}

@@ -22,4 +22,3 @@ func createpktstring(pkt: pktheader, userstring: String) -> String {
     return stringtosend
 }
 
-

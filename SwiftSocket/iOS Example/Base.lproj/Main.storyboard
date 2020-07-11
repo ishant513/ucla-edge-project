@@ -42,34 +42,47 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="time start" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ON6-33-5fQ">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Time Interval/Frequency" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xhi-rR-4s6">
                                         <rect key="frame" x="0.0" y="84.5" width="311" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="getTimeInt" destination="BYZ-38-t0r" eventType="editingDidEnd" id="PIZ-Rx-9vk"/>
+                                        </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="time end" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qlq-bC-Jul">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Desired IP Address" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vYj-AI-hxu">
                                         <rect key="frame" x="0.0" y="118.5" width="311" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="getIP" destination="BYZ-38-t0r" eventType="editingDidEnd" id="sBT-a8-4GF"/>
+                                        </connections>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Abd-Zo-rGp">
+                                        <rect key="frame" x="0.0" y="152.5" width="311" height="30"/>
+                                        <state key="normal" title="Start Test"/>
+                                        <connections>
+                                            <action selector="TestStart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zWW-Ak-mw6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejv-M0-FOf">
+                                        <rect key="frame" x="0.0" y="182.5" width="311" height="30"/>
+                                        <state key="normal" title="End Test"/>
+                                        <connections>
+                                            <action selector="stopButtonClickWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="srZ-Yb-w1s"/>
+                                        </connections>
+                                    </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JFV-o8-msm">
-                                        <rect key="frame" x="0.0" y="152.5" width="311" height="422.5"/>
+                                        <rect key="frame" x="0.0" y="212.5" width="311" height="392.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7NV-sq-dr2">
-                                        <rect key="frame" x="0.0" y="575" width="311" height="30"/>
+                                        <rect key="frame" x="0.0" y="605" width="311" height="30"/>
                                         <state key="normal" title="Connect"/>
                                         <connections>
                                             <action selector="connectButtonAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="WFp-fI-e3w"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Zb-7f-RAm">
-                                        <rect key="frame" x="0.0" y="605" width="311" height="30"/>
-                                        <state key="normal" title="Send data"/>
-                                        <connections>
-                                            <action selector="sendButtonAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Iu-Bv-Ca7"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -84,6 +97,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="frequency" destination="Xhi-rR-4s6" id="Ho8-8f-Z0X"/>
+                        <outlet property="ipAddress" destination="vYj-AI-hxu" id="H5k-mJ-bbQ"/>
                         <outlet property="labelName" destination="DvB-KG-o9j" id="dHv-It-2sh"/>
                         <outlet property="textFieldName" destination="sDm-1h-02F" id="haK-jz-jBJ"/>
                         <outlet property="textView" destination="JFV-o8-msm" id="3lP-Nj-elk"/>
