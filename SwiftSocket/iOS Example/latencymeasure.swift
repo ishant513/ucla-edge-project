@@ -27,13 +27,13 @@ class timeloop {
     var flag: Int = 0
     var userstring: String = "Default"
     var remoteclient: TCPClient
-    var controller: ViewController
+    var controller: ViewController?
         
     init(frequency: TimeInterval, string2: String, client: TCPClient) {
         userstring = string2 + "\n"
         remoteclient = client
         let timer = frequency/1000
-        _ = Timer.scheduledTimer(timeInterval: timer, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
+          _ = Timer.scheduledTimer(timeInterval: timer, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
     }
     
     func setController(viewcon: ViewController){
@@ -58,13 +58,13 @@ class timeloop {
                 createpktstring(pkt: packet, userstring: userstring)
             }
         }
-        if let response = controller.sendRequest(stringtossend: uinput, using: remoteclient) {
-            controller.appendToTextField(string: "Got it\n")
-            controller.appendToTextField(string: "Response: \(response)")
+        if let response = controller!.sendRequest(stringtossend: uinput, using: remoteclient) {
+            controller!.appendToTextField(string: "Got it\n")
+            controller!.appendToTextField(string: "Response: \(response)")
         }
-        if let response1 = controller.sendRequest(stringtossend: "\n", using: remoteclient) {
-            controller.appendToTextField(string: "Got it again\n")
-            controller.appendToTextField(string: "Response: \(response1)")
+        if let response1 = controller!.sendRequest(stringtossend: "\n", using: remoteclient) {
+            controller!.appendToTextField(string: "Got it again\n")
+            controller!.appendToTextField(string: "Response: \(response1)")
         }
         
     }

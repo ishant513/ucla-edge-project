@@ -85,7 +85,7 @@ class ViewController: UIViewController {
     func readResponse(from client: TCPClient) -> String? {
         guard let response = client.read(1024*10) else { return nil }
     
-        return String(bytes: response, encoding: .utf8)
+        return String(bytes: response, encoding: .utf16)
     }
 
     func appendToTextField(string: String) {
