@@ -1,7 +1,7 @@
 import Foundation
 import SwiftSocket
 
-var myseqno: Int = 99
+var myseqno: Int = 999
 
 struct pktheader {
     var seqno: Int = 0
@@ -15,12 +15,15 @@ struct pktheader {
     }
 }
 
-func createpktstring(pkt: pktheader, userstring: String) -> String {
+func createpktstring(pkt: pktheader, userstring: String) -> [Byte] {
     var mypkt = pkt
-    let mydata = Data(bytes: &mypkt, count: MemoryLayout<ContiguousBytes>.size)
-    let string = String(data: mydata, encoding: .utf16) ?? "No Input"
-    let stringtosend = string + userstring
-    return stringtosend
+    let pkthdrsize = MemoryLayout.size(ofValue: mypkt)
+    let userstrsize = userstring.count
+    print(userstrsize)
+    var buffer = [Byte](repeating: 0, count: pkthdrsize + userstrsize)
+    memcpy(&buffer[0], &mypkt, pkthdrsize)
+    memcpy(&buffer[pkthdrsize + 1], userstring, userstrsize)
+    return buffer
 }
 
 class timeloop {
@@ -33,7 +36,7 @@ class timeloop {
         userstring = string2 + "\n"
         remoteclient = client
         let timer = frequency/1000
-          _ = Timer.scheduledTimer(timeInterval: timer, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
+          _ = Timer.scheduledTimer(timeInterval: timer, target: self, selector: #selector(fire), userInfo: nil, repeats: false)
     }
     
     func setController(viewcon: ViewController){
@@ -50,21 +53,14 @@ class timeloop {
 
         var packet:pktheader {
             get {
-                return pktheader(bytes: userstring.utf16.count)
+                return pktheader(bytes: userstring.count)
             }
         }
-        var uinput: String{
-            get {
-                createpktstring(pkt: packet, userstring: userstring)
-            }
-        }
-        if let response = controller!.sendRequest(stringtossend: uinput, using: remoteclient) {
-            controller!.appendToTextField(string: "Got it\n")
-            controller!.appendToTextField(string: "Response: \(response)")
-        }
-        if let response1 = controller!.sendRequest(stringtossend: "\n", using: remoteclient) {
-            controller!.appendToTextField(string: "Got it again\n")
-            controller!.appendToTextField(string: "Response: \(response1)")
+        let pkttosend = createpktstring(pkt: packet, userstring: userstring)
+        if controller!.sendpacket(pkt2send: pkttosend, using: remoteclient) {
+            controller!.appendToTextField(string: "Sent packet\n")
+        } else {
+            controller!.appendToTextField(string: "Failed tp Send packet\n")
         }
         
     }

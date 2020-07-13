@@ -81,6 +81,17 @@ class ViewController: UIViewController {
             return nil
         }
     }
+    
+    func sendpacket(pkt2send: [Byte], using client: TCPClient) -> Bool {
+        appendToTextField(string: "Sending data ... ")
+        switch client.send(data: pkt2send) {
+        case .success:
+            return true
+        case .failure(let error):
+            appendToTextField(string: String(describing: error))
+            return false
+        }
+    }
   
     func readResponse(from client: TCPClient) -> String? {
         guard let response = client.read(1024*10) else { return nil }
