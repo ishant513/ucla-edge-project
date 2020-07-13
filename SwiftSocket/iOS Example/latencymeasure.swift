@@ -1,28 +1,33 @@
 import Foundation
 import SwiftSocket
 
-var myseqno: Int = 999
+var myseqno: Int64 = 10
 
 struct pktheader {
-    var seqno: Int = 0
-    var timesent: Int = 0
-    var userbytes: Int = 0
-    init(bytes: Int) {
+    var seqno: Int64 = 0
+    var timesent: Int64 = 0
+    var userbytes: Int64 = 0
+    init(bytes: Int64) {
         seqno = myseqno
         myseqno += 1
-        timesent = 1111
+        timesent = 5
         userbytes = bytes
+        print(seqno, timesent, userbytes)
     }
 }
 
 func createpktstring(pkt: pktheader, userstring: String) -> [Byte] {
     var mypkt = pkt
-    let pkthdrsize = MemoryLayout.size(ofValue: mypkt)
     let userstrsize = userstring.count
-    print(userstrsize)
+    let intsz = MemoryLayout.size(ofValue: mypkt.seqno)
+    print("intsz = ", intsz)
+    let pkthdrsize = MemoryLayout.size(ofValue: mypkt)
     var buffer = [Byte](repeating: 0, count: pkthdrsize + userstrsize)
-    memcpy(&buffer[0], &mypkt, pkthdrsize)
-    memcpy(&buffer[pkthdrsize + 1], userstring, userstrsize)
+    memcpy(&buffer[0], &mypkt.seqno, intsz)
+    memcpy(&buffer[intsz], &mypkt.timesent, intsz)
+    memcpy(&buffer[2*intsz], &mypkt.userbytes, intsz)
+    memcpy(&buffer[pkthdrsize], userstring, userstrsize)
+    print(buffer[0], buffer[1], buffer[2], buffer[3], buffer[4], buffer[5], buffer[6], buffer[7], buffer[8])
     return buffer
 }
 
@@ -36,7 +41,7 @@ class timeloop {
         userstring = string2 + "\n"
         remoteclient = client
         let timer = frequency/1000
-          _ = Timer.scheduledTimer(timeInterval: timer, target: self, selector: #selector(fire), userInfo: nil, repeats: false)
+          _ = Timer.scheduledTimer(timeInterval: timer, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
     }
     
     func setController(viewcon: ViewController){
@@ -53,7 +58,7 @@ class timeloop {
 
         var packet:pktheader {
             get {
-                return pktheader(bytes: userstring.count)
+                return pktheader(bytes: Int64(userstring.count))
             }
         }
         let pkttosend = createpktstring(pkt: packet, userstring: userstring)
