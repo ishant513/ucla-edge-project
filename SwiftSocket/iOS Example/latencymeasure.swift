@@ -10,10 +10,14 @@ struct pktheader {
     init(bytes: Int64) {
         seqno = myseqno
         myseqno += 1
-        timesent = 5
+        timesent = getCurrentMillis()
         userbytes = bytes
         print(seqno, timesent, userbytes)
     }
+}
+
+func getCurrentMillis() -> Int64 {
+    return Int64(Date().timeIntervalSince1970*1000)
 }
 
 func createpktstring(pkt: pktheader, userstring: String) -> [Byte] {
