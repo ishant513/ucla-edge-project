@@ -1,7 +1,7 @@
 import Foundation
 import SwiftSocket
 
-var myseqno: Int64 = 10
+var myseqno: Int64 = 999
 
 struct pktheader {
     var seqno: Int64 = 0
