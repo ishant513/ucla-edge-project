@@ -41,15 +41,15 @@ public class Server {
 		serversock.close();
 	}
 
-	public static int convertByteArrayToInt(byte[] data, int startIndex) {
-		return (
-				data[startIndex + 7] << 56)
-				| (data[startIndex + 6] << 48)
-				| (data[startIndex + 5] << 40)
-				| (data[startIndex + 4] << 32)
-				| (data[startIndex + 3] << 24)
-				| (data[startIndex + 2] << 16)
-				| (data[startIndex + 1] << 8)
-				| data[startIndex];
+	public static long convertByteArrayToInt(byte[] data, int startIndex) {
+		return (((data[startIndex + 7] & 0xFF) << 56) |
+						((data[startIndex + 6] & 0xFF) << 48) |
+						((data[startIndex + 5] & 0xFF) << 40) |
+						((data[startIndex + 4] & 0xFF) << 32) |
+						((data[startIndex + 3] & 0xFF) << 24) |
+						((data[startIndex + 2] & 0xFF) << 16) |
+						((data[startIndex + 1] & 0xFF) << 8)  |
+						((data[startIndex + 0] & 0xFF) << 0)
+		);
 	}
 }
