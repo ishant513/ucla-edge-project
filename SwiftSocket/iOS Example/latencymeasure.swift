@@ -42,7 +42,7 @@ class timeloop {
     var controller: ViewController?
         
     init(frequency: TimeInterval, string2: String, client: TCPClient) {
-        userstring = string2 + "\n"
+        userstring = string2
         remoteclient = client
         let timer = frequency/1000
           _ = Timer.scheduledTimer(timeInterval: timer, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
@@ -69,8 +69,52 @@ class timeloop {
         if controller!.sendpacket(pkt2send: pkttosend, using: remoteclient) {
             controller!.appendToTextField(string: "Sent packet\n")
         } else {
-            controller!.appendToTextField(string: "Failed tp Send packet\n")
+            controller!.appendToTextField(string: "Failed to Send packet\n")
         }
         
+    }
+}
+
+class pktread{
+    var remoteclient: TCPClient
+    var controller: ViewController?
+    var userstring: String = "Default"
+        
+    init(frequency: TimeInterval, string2: String, client: TCPClient) {
+        remoteclient = client
+        userstring = string2
+        //let timer = frequency/1000
+        //  _ = Timer.scheduledTimer(timeInterval: timer, target: self, selector: #selector(recv), userInfo: nil, repeats: false)
+        //let backgroundQueue = DispatchQueue(label: "com.app.queue", qos: .background)
+        //backgroundQueue.async {
+        //    print("Run on background thread")
+        //}
+        recv()
+    }
+    
+    func setController(viewcon: ViewController){
+        controller = viewcon
+    }
+    
+    var bool: Bool = true
+        
+    //@objc
+    func recv() {
+        print("Inside the Recv Function")
+        DispatchQueue.global().async {
+            while(self.bool == true) {
+                //var pktstr:[Byte] = remoteclient.read(24 + userstring.count)!
+                print("Trying to Get packet")
+                var pktstr:[Byte] = self.controller!.readResponse(from: self.remoteclient)!
+                print("Got Packet")
+                //let start = String.Index(utf16Offset: 24, in: pktstr)
+                //let end = String.Index(utf16Offset: 24 + userstring.count, in: pktstr)
+                //let substring = String(pktstr[start..<end])
+                DispatchQueue.main.async(execute: {
+                    print("Got packet back")
+                    self.controller?.appendToTextField(string: "Got Packet Back")
+                })
+            }
+        }
     }
 }

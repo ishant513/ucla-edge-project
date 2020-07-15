@@ -10,6 +10,7 @@ class ViewController: UIViewController {
     var client: TCPClient?
     var runtimer: timeloop?
     var runtest: Bool = false
+    var packetread:pktread?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,17 +71,7 @@ class ViewController: UIViewController {
         }
     }
   
-    func sendRequest(stringtossend: String, using client: TCPClient) -> String? {
-        appendToTextField(string: "Sending data ... ")
-        appendToTextField(string: stringtossend)
-        switch client.send(string: stringtossend) {
-        case .success:
-            return readResponse(from: client)
-        case .failure(let error):
-            appendToTextField(string: String(describing: error))
-            return nil
-        }
-    }
+    
     
     func sendpacket(pkt2send: [Byte], using client: TCPClient) -> Bool {
         appendToTextField(string: "Sending data ... ")
@@ -93,10 +84,9 @@ class ViewController: UIViewController {
         }
     }
   
-    func readResponse(from client: TCPClient) -> String? {
-        guard let response = client.read(1024*10) else { return nil }
-    
-        return String(bytes: response, encoding: .utf16)
+    func readResponse(from client: TCPClient) -> [Byte]? {
+        guard let response = client.read(24 + string2.count) else { return nil }
+        return response
     }
 
     func appendToTextField(string: String) {
@@ -109,6 +99,8 @@ class ViewController: UIViewController {
         runtest = true
         runtimer = timeloop.self(frequency: inputtedtime, string2: string2, client: client!)
         runtimer?.setController(viewcon: self)
+        packetread = pktread.self(frequency: 1000, string2: string2, client: client!)
+        packetread?.setController(viewcon: self)
     }
     
     @IBAction func stopButtonClick(sender: UIButton){
