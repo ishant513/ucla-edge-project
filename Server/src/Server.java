@@ -1,7 +1,8 @@
 import java.net.*;
 import java.io.*;
 import java.nio.*;
-public class Server {  
+public class Server {
+
 	
 	public static void main(String args[]) throws Exception{  
 		ServerSocket serversock = new ServerSocket(9000);
@@ -17,7 +18,7 @@ public class Server {
 		while(sent){
 			System.out.println("in loop");
 			byte[] bytearr = new byte[1024];
-			din.read(bytearr,0,24);
+					din.read(bytearr,0,24);
 			System.out.println("received " + bytearr[0] + bytearr[1] + bytearr[2] + bytearr[3] + bytearr[4] +
 					bytearr[5] + bytearr[6] + bytearr[7]);
 			//int seqno = ByteBuffer.wrap(bytearr, 0, 4).getInt();
@@ -30,9 +31,15 @@ public class Server {
 			din.read(bytearr, 24, (int)userstringsz);
 			String str = new String(bytearr, 24, (int)userstringsz);
 			System.out.println("received string " + str);
-
-			// Sent the Packet Back
-			dout.write(bytearr, 0, (int) (24 + userstringsz));
+			ByteBuffer sendbuffer = ByteBuffer.allocate(24);
+			sendbuffer.putLong(0, seqno);
+			sendbuffer.putLong(Long.BYTES, timesent);
+			sendbuffer.putLong(2*Long.BYTES, userstringsz);
+			byte[] sendpacket = new byte[sendbuffer.remaining() + (int)userstringsz];
+			sendbuffer.get(sendpacket, 0, 24);
+			System.arraycopy(bytearr, 24, sendpacket, 24, (int)userstringsz);
+			System.out.println("Sending: " + sendpacket);
+			dout.write(sendpacket);
 			dout.flush();
 		}
 		d.close();
@@ -52,4 +59,4 @@ public class Server {
 						((data[startIndex + 0] & 0xFF) << 0)
 		);
 	}
-}1
+}

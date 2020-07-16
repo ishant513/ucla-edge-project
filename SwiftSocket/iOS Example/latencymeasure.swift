@@ -85,11 +85,11 @@ class pktread{
         userstring = string2
         //let timer = frequency/1000
         //  _ = Timer.scheduledTimer(timeInterval: timer, target: self, selector: #selector(recv), userInfo: nil, repeats: false)
-        //let backgroundQueue = DispatchQueue(label: "com.app.queue", qos: .background)
-        //backgroundQueue.async {
-        //    print("Run on background thread")
-        //}
-        recv()
+        let backgroundQueue = DispatchQueue(label: "com.app.queue", qos: .background)
+            backgroundQueue.async {
+                print("Run on background thread")
+                self.recv()
+        }
     }
     
     func setController(viewcon: ViewController){
@@ -100,21 +100,39 @@ class pktread{
         
     //@objc
     func recv() {
-        print("Inside the Recv Function")
-        DispatchQueue.global().async {
-            while(self.bool == true) {
-                //var pktstr:[Byte] = remoteclient.read(24 + userstring.count)!
-                print("Trying to Get packet")
-                var pktstr:[Byte] = self.controller!.readResponse(from: self.remoteclient)!
-                print("Got Packet")
-                //let start = String.Index(utf16Offset: 24, in: pktstr)
-                //let end = String.Index(utf16Offset: 24 + userstring.count, in: pktstr)
-                //let substring = String(pktstr[start..<end])
-                DispatchQueue.main.async(execute: {
-                    print("Got packet back")
-                    self.controller?.appendToTextField(string: "Got Packet Back")
-                })
-            }
+        while(self.bool == true) {
+            //var pktstr:[Byte] = remoteclient.read(24 + userstring.count)!
+            print("Trying to Get packet")
+            var seqno: Int64 = 0
+            var seqno1: Int64 = 0
+            var seqno2: Int64 = 0
+            var timesent: Int64 = 0
+            var userstringsz: Int64 = 0
+            let intsz = MemoryLayout.size(ofValue: seqno)
+            var pktstr:[Byte] = self.controller!.readResponse(client: self.remoteclient, len: intsz*3 + userstring.count)!
+            print("Got Packet: ", pktstr[0], pktstr[1], pktstr[2], pktstr[3], pktstr[4], pktstr[5], pktstr[6], pktstr[7], pktstr[8])
+            var data = Data(bytes: pktstr, count: 24)
+            memcpy(&data[0], &seqno, intsz)
+            memcpy(&pktstr[intsz], &timesent, intsz)
+            memcpy(&pktstr[intsz*2], &userstringsz, intsz)
+            seqno1 = seqno.littleEndian
+            seqno2 = Int64(NSSwapBigLongLongToHost(UInt64(seqno)))
+            print("Seqno: ", seqno, seqno1, seqno2)
+            //userstringsz = userstringsz.littleEndian
+            var pktbyte = [Byte](repeating: 0, count: userstring.count)
+            memcpy(&pktbyte[0], &pktstr[24], userstring.count)
+            let string1 = String(bytes: pktbyte, encoding: .utf8)
+            //let start = String.Index(utf16Offset: 24, in: pktstr)
+            //let end = String.Index(utf16Offset: 24 + userstring.count, in: pktstr)
+            //let substring = String(pktstr[start..<end])
+            //let string1 = String(bytes: pktstr, encoding: .utf8)
+            DispatchQueue.main.async(execute: {
+                //print("Got Packet Back: ", seqno, timesent, userstringsz)
+                print(pktstr[0], pktstr[1], pktstr[2], pktstr[3], pktstr[4], pktstr[5], pktstr[6], pktstr[7], pktstr[8])
+                print(seqno, seqno1, seqno2)
+                let str2 = "Got Packet Back "
+                self.controller?.appendToTextField(string: str2)
+            })
         }
     }
 }

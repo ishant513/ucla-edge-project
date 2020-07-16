@@ -42,7 +42,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Time Interval/Frequency" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xhi-rR-4s6">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Time Interval/Frequency in ms [default 500ms]" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xhi-rR-4s6">
                                         <rect key="frame" x="0.0" y="84.5" width="311" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -50,7 +50,7 @@
                                             <action selector="getTimeInt" destination="BYZ-38-t0r" eventType="editingDidEnd" id="PIZ-Rx-9vk"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Desired IP Address" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vYj-AI-hxu">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Desired IP Address [default localhost]" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vYj-AI-hxu">
                                         <rect key="frame" x="0.0" y="118.5" width="311" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -58,33 +58,33 @@
                                             <action selector="getIP" destination="BYZ-38-t0r" eventType="editingDidEnd" id="sBT-a8-4GF"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Abd-Zo-rGp">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7NV-sq-dr2">
                                         <rect key="frame" x="0.0" y="152.5" width="311" height="30"/>
+                                        <state key="normal" title="Connect"/>
+                                        <connections>
+                                            <action selector="connectButtonAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="WFp-fI-e3w"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Abd-Zo-rGp">
+                                        <rect key="frame" x="0.0" y="182.5" width="311" height="30"/>
                                         <state key="normal" title="Start Test"/>
                                         <connections>
                                             <action selector="TestStart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zWW-Ak-mw6"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejv-M0-FOf">
-                                        <rect key="frame" x="0.0" y="182.5" width="311" height="30"/>
+                                        <rect key="frame" x="0.0" y="212.5" width="311" height="30"/>
                                         <state key="normal" title="End Test"/>
                                         <connections>
                                             <action selector="stopButtonClickWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="srZ-Yb-w1s"/>
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JFV-o8-msm">
-                                        <rect key="frame" x="0.0" y="212.5" width="311" height="392.5"/>
+                                        <rect key="frame" x="0.0" y="242.5" width="311" height="392.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7NV-sq-dr2">
-                                        <rect key="frame" x="0.0" y="605" width="311" height="30"/>
-                                        <state key="normal" title="Connect"/>
-                                        <connections>
-                                            <action selector="connectButtonAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="WFp-fI-e3w"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>

@@ -9,6 +9,7 @@ class ViewController: UIViewController {
     let port = 9000
     var client: TCPClient?
     var runtimer: timeloop?
+    var connected: Bool = false
     var runtest: Bool = false
     var packetread:pktread?
 
@@ -45,7 +46,7 @@ class ViewController: UIViewController {
         host = ipAddress.text ?? "localhost"
     }
     
-    lazy var string2: String = "Hi"
+    lazy var string2: String = "Custom String"
  
     //our label to display input
     @IBOutlet weak var labelName: UILabel!
@@ -65,7 +66,8 @@ class ViewController: UIViewController {
         guard let client = client else { return }
         switch client.connect(timeout: 10) {
         case .success:
-        appendToTextField(string: "Connected to host \(client.address)")
+            connected = true
+            appendToTextField(string: "Connected to host \(client.address)")
         case .failure(let error):
             appendToTextField(string: String(describing: error))
         }
@@ -84,8 +86,8 @@ class ViewController: UIViewController {
         }
     }
   
-    func readResponse(from client: TCPClient) -> [Byte]? {
-        guard let response = client.read(24 + string2.count) else { return nil }
+    func readResponse(client: TCPClient, len: Int) -> [Byte]? {
+        guard let response = client.read(len) else { return nil }
         return response
     }
 
@@ -95,12 +97,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func TestStart(_ sender: Any) {
-        appendToTextField(string: "Got it again\n")
-        runtest = true
-        runtimer = timeloop.self(frequency: inputtedtime, string2: string2, client: client!)
-        runtimer?.setController(viewcon: self)
-        packetread = pktread.self(frequency: 1000, string2: string2, client: client!)
-        packetread?.setController(viewcon: self)
+        if (connected != true) {
+            appendToTextField(string: "You need to connect first")
+        } else {
+            runtest = true
+            runtimer = timeloop.self(frequency: inputtedtime, string2: string2, client: client!)
+            runtimer?.setController(viewcon: self)
+            packetread = pktread.self(frequency: 1000, string2: string2, client: client!)
+            packetread?.setController(viewcon: self)
+        }
     }
     
     @IBAction func stopButtonClick(sender: UIButton){

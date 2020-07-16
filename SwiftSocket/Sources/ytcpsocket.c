@@ -108,18 +108,18 @@ int ytcpsocket_close(int socketfd){
 int ytcpsocket_pull(int socketfd, char *data, int len, int timeout_sec) {
     int readlen = 0;
     int datalen = 0;
-    //if (timeout_sec > 0) {
-    //    fd_set fdset;
-    //    struct timeval timeout;
-    //    timeout.tv_usec = 0;
-    //    timeout.tv_sec = timeout_sec;
-    //    FD_ZERO(&fdset);
-    //    FD_SET(socketfd, &fdset);
-    //    int ret = select(socketfd + 1, &fdset, NULL, NULL, &timeout);
-    //    if (ret <= 0) {
-    //        return ret; // select-call failed or timeout occurred (before anything was sent)
-    //    }
-    //}
+    if (timeout_sec > 0) {
+        fd_set fdset;
+        struct timeval timeout;
+        timeout.tv_usec = 0;
+        timeout.tv_sec = timeout_sec;
+        FD_ZERO(&fdset);
+        FD_SET(socketfd, &fdset);
+        int ret = select(socketfd + 1, &fdset, NULL, NULL, &timeout);
+        if (ret <= 0) {
+            return ret; // select-call failed or timeout occurred (before anything was sent)
+        }
+    }
     // use loop to make sure receive all data
     do {
         readlen = (int)read(socketfd, data + datalen, len - datalen);
