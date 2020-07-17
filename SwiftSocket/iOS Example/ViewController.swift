@@ -76,7 +76,7 @@ class ViewController: UIViewController {
     
     
     func sendpacket(pkt2send: [Byte], using client: TCPClient) -> Bool {
-        appendToTextField(string: "Sending data ... ")
+        //appendToTextField(string: "Sending data ... ")
         switch client.send(data: pkt2send) {
         case .success:
             return true
@@ -92,8 +92,14 @@ class ViewController: UIViewController {
     }
 
     func appendToTextField(string: String) {
-        print(string)
         textView.text = textView.text.appending("\n\(string)")
+    }
+    
+    func PrintRecvPacketInfo(seqno: Int64, rtt: UInt64, userstr: String) {
+        let str1 = String(seqno)
+        let str2 = String(rtt)
+        let str3 = "Seq# " + str1 + ", RTT: " + str2 + ", Custom String: " + userstr
+        textView.text = textView.text.appending("\n\(str3)")
     }
     
     @IBAction func TestStart(_ sender: Any) {

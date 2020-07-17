@@ -19,8 +19,8 @@ public class Server {
 			System.out.println("in loop");
 			byte[] bytearr = new byte[1024];
 					din.read(bytearr,0,24);
-			System.out.println("received " + bytearr[0] + bytearr[1] + bytearr[2] + bytearr[3] + bytearr[4] +
-					bytearr[5] + bytearr[6] + bytearr[7]);
+			//System.out.println("received " + bytearr[0] + bytearr[1] + bytearr[2] + bytearr[3] + bytearr[4] +
+			//bytearr[5] + bytearr[6] + bytearr[7]);
 			//int seqno = ByteBuffer.wrap(bytearr, 0, 4).getInt();
 			long seqno = convertByteArrayToInt(bytearr, 0);
 			System.out.println("received seqno " + seqno);
@@ -38,7 +38,7 @@ public class Server {
 			byte[] sendpacket = new byte[sendbuffer.remaining() + (int)userstringsz];
 			sendbuffer.get(sendpacket, 0, 24);
 			System.arraycopy(bytearr, 24, sendpacket, 24, (int)userstringsz);
-			System.out.println("Sending: " + sendpacket);
+			//System.out.println("Sending: " + sendpacket);
 			dout.write(sendpacket);
 			dout.flush();
 		}
